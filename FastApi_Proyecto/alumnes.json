@@ -1,0 +1,85 @@
+[
+    {
+        "id": 1,
+        "nom": "Ibai",
+        "cognom": "Esplugas",
+        "data": {
+            "dia": 5,
+            "mes": 6,
+            "any": 2005
+        },
+        "email": "marc.sanchez@example.com",
+        "feina": false,
+        "curs": "2n Batxillerat"
+    },
+    {
+        "id": 2,
+        "nom": "Laura",
+        "cognom": "Mart\u00c3\u00adnez",
+        "data": {
+            "dia": 23,
+            "mes": 8,
+            "any": 2006
+        },
+        "email": "laura.martinez@example.com",
+        "feina": true,
+        "curs": "1r Batxillerat"
+    },
+    {
+        "id": 3,
+        "nom": "Pau",
+        "cognom": "G\u00c3\u00b3mez",
+        "data": {
+            "dia": 5,
+            "mes": 11,
+            "any": 2004
+        },
+        "email": "pau.gomez@example.com",
+        "feina": false,
+        "curs": "CFGM Inform\u00c3\u00a0tica"
+    },
+    {
+        "id": 4,
+        "nom": "Cl\u00c3\u00a0udia",
+        "cognom": "Ruiz",
+        "data": {
+            "dia": 30,
+            "mes": 6,
+            "any": 2005
+        },
+        "email": "claudia.ruiz@example.com",
+        "feina": true,
+        "curs": "2n Batxillerat"
+    },
+    {
+        "id": 5,
+        "nom": "Joan",
+        "cognom": "Fern\u00c3\u00a1ndez",
+        "data": {
+            "dia": 15,
+            "mes": 9,
+            "any": 2003
+        },
+        "email": "joan.fernandez@example.com",
+        "feina": false,
+        "curs": "CFGS Desenvolupament Web"
+    },
+    {
+        "id": 6,
+        "nom": "string",
+        "cognom": "string",
+        "data": {},
+        "email": "string",
+        "feina": true,
+        "curs": "string"
+    },
+    {
+        "id": 7,
+        "nom": "string",
+        "cognom": "string",
+        "data": {},
+        "email": "string",
+        "feina": true,
+        "curs": "string"
+    }
+]
