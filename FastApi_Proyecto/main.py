@@ -16,12 +16,13 @@ app = FastAPI(
     version="2.0"
 )
 
-# Models de dades millorats
+# Model de la data de naixement
 class DataNaixement(BaseModel):
     dia: int
     mes: int
     any: int
 
+# Esquema per rebre dades d'un alumne a través de la API
 class AlumneSchema(BaseModel):
     nom: str
     cognom: str
@@ -30,6 +31,7 @@ class AlumneSchema(BaseModel):
     feina: bool
     curs: str
 
+# Esquema de resposta amb identificador
 class AlumneResponse(AlumneSchema):
     id: int
 
@@ -37,29 +39,33 @@ class AlumneResponse(AlumneSchema):
 class Database:
     _FILE = "alumnes.json"
     
+    # Comprova si el fitxer existeix i el crea buit si no hi és
     @classmethod
     def _ensure_file_exists(cls):
         if not Path(cls._FILE).exists():
             with open(cls._FILE, 'w') as f:
                 json.dump([], f)
     
+    # Retorna la llista de tots els alumnes des del fitxer
     @classmethod
     def get_all(cls) -> List[dict]:
         cls._ensure_file_exists()
         with open(cls._FILE, 'r') as f:
             return json.load(f)
     
+    # Desa la llista completa d'alumnes al fitxer
     @classmethod
     def save_all(cls, data: List[dict]):
         with open(cls._FILE, 'w') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
-    
+
+    # Calcula el proper ID disponible per un nou alumne
     @classmethod
     def get_next_id(cls) -> int:
         alumnes = cls.get_all()
         return max((a['id'] for a in alumnes), default=0) + 1
 
-# Endpoints reestructurats
+# Ruta d'inici que retorna informació bàsica del centre
 @app.get(
     "/",
     summary="Informació del centre",
@@ -68,6 +74,7 @@ class Database:
 def get_institut():
     return {"institut": "Institut TIC de Barcelona"}
 
+# Ruta per comptar el nombre total d'alumnes
 @app.get(
     "/alumnes/",
     response_model=int,
@@ -77,6 +84,7 @@ def get_institut():
 def count_alumnes():
     return len(Database.get_all())
 
+# Ruta per obtenir un alumne concret pel seu ID
 @app.get(
     "/alumnes/{alumne_id}",
     response_model=AlumneResponse,
@@ -93,6 +101,7 @@ def get_alumne(alumne_id: int):
         detail=f"Alumne amb ID {alumne_id} no existeix"
     )
 
+# Ruta per eliminar un alumne pel seu ID
 @app.delete(
     "/alumnes/{alumne_id}",
     status_code=status.HTTP_204_NO_CONTENT,
@@ -111,6 +120,7 @@ def remove_alumne(alumne_id: int):
     
     Database.save_all(updated)
 
+# Ruta per afegir un nou alumne al sistema
 @app.post(
     "/alumnes/",
     response_model=AlumneResponse,
